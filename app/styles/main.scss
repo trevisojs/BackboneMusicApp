@@ -1,5 +1,6 @@
 .content {
   margin-top: 80px;
+  margin-bottom: 100px;
 }
 footer {
   position: fixed;
@@ -7,6 +8,15 @@ footer {
   left:0;
   right:0;
   background: #efefef;
+}
+
+.navbar-header {
+  width:100%;
+  overflow: hidden;
+  .navbar-brand {
+    float:none;
+    display: block;
+  }
 }
 #main-content {
   h3 {
@@ -49,12 +59,24 @@ footer {
   .progress {
     height: 5px;
     margin-right: 20px;
+    margin-left: 20px;
   }
 
   .total-time {
     display: inline-block;
     margin: 12.5px 15px;
   }
+}
+
+@media (min-width: 768px) {
+  aside {
+    position: fixed;
+    width: 25%;
+    top: 80px;
+    left:0px;
+    padding-left: 20px;
+  }
+
 }
 
 
