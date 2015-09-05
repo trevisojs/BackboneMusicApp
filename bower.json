@@ -2,6 +2,7 @@
   "name": "backbone-music-app",
   "private": true,
   "dependencies": {
+    "backbone": "~1.2.3",
     "bootsketch": "~1.0.1",
     "bootstrap-sass-official": "~3.3.5",
     "modernizr": "~2.8.2"
