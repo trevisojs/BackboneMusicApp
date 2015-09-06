@@ -5,6 +5,8 @@
 //        new MusicApp.Router
 
         new MA.View.NavigatorView();
+        var player = new MA.View.PlayerView();
+        player.render();
     });
 
 

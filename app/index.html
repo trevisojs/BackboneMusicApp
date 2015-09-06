@@ -111,20 +111,8 @@
 
             </div>
             <div class="col-xs-12 col-sm-9">
-              <div class="row">
-                <div class="col-xs-8">
-                  <h4>No woman no cry | Bob Marley</h4>
-                </div>
-                <div class="col-xs-4 text-right">
-                  <strong class="total-time">3:25</strong>
-                </div>
-              </div>
-              <div class="row">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                    1:35
-                  </div>
-                </div>
+              <div id="player-status">
+                <!-- Template #player-status-tmpl -->
               </div>
             </div>
           </div>
@@ -133,6 +121,27 @@
 
 
     </footer>
+
+    <script type="text/template" id="player-status-tmpl">
+      <div class="row">
+        <div class="col-xs-8">
+          <h4><%= title %></h4>
+        </div>
+        <div class="col-xs-4 text-right">
+          <strong class="total-time"><%= duration.minutes %>:<%= duration.seconds %></strong>
+        </div>
+      </div>
+      <div class="row">
+        <div id="progress"></div>
+      </div>
+    </script>
+    <script type="text/template" id="progress-tmpl">
+      <a class="progress" href="#">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= value %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= value %>%;">
+          <%= time.minutes %>:<%= time.seconds %>
+        </div>
+      </a>
+    </script>
 
 
 
@@ -148,6 +157,7 @@
     <!-- build:js({app,.tmp}) scripts/main.js -->
     <script>var MusicApp = {};</script>
     <script src="scripts/views/NavigatorView.js"></script>
+    <script src="scripts/views/PlayerView.js"></script>
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
 </body>
