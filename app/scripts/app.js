@@ -4,9 +4,8 @@
     $(function(){
 //        new MusicApp.Router
 
-        new MA.View.NavigatorView();
-        var player = new MA.View.PlayerView();
-        player.render();
+        new MA.Router.MainRouter();
+        Backbone.history.start();
     });
 
 
