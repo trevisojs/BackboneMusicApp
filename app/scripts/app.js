@@ -1,20 +1,15 @@
-(function(global,$){
+(function(global,$, MA){
     'use strict';
-
-    var MusicApp = global.MusicApp = {
-      View: {},
-      Router: {},
-      Model: {},
-      Collection: {}
-    };
 
     $(function(){
 //        new MusicApp.Router
+
+        new MA.View.NavigatorView();
     });
 
 
 
-})(window, jQuery);
+})(window, jQuery, MusicApp);
 
 
 

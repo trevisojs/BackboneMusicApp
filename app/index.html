@@ -44,15 +44,15 @@
               <aside id="navigator">
                 <form role="search">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control search-box" placeholder="Search">
                   </div>
                 </form>
                 <div class="list-group">
-                  <a href="#" class="list-group-item active">
+                  <a href="#/songs" class="list-group-item active">
                     Songs
                   </a>
-                  <a href="#" class="list-group-item">Artists</a>
-                  <a href="#" class="list-group-item">Album</a>
+                  <a href="#/artists" class="list-group-item">Artists</a>
+                  <a href="#/album" class="list-group-item">Album</a>
                 </div>
               </aside>
             </div>
@@ -146,6 +146,8 @@
     <!-- endbuild -->
 
     <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script>var MusicApp = {};</script>
+    <script src="scripts/views/NavigatorView.js"></script>
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
 </body>
