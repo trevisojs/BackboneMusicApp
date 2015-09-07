@@ -29,13 +29,7 @@
         e.preventDefault();
         var modelId = $(e.currentTarget).data('id');
         var model = this.collection.get(modelId);
-
-        _.each(this.collection.models, function(m) {
-          if(m.id !== modelId) {
-            m.set({isPlaying:false},{silent: true});
-          }
-        });
-        model.set({isPlaying: true});
+        this.collection.play(model);
       }
   });
 

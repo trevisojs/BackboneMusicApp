@@ -76,8 +76,11 @@ footer {
 }
 
 #songs-view {
-  tr.active td{
+  tr.playing td{
     background: #9af185;
+  }
+  tr.active td{
+    background: #ebf36b;
   }
 }
 

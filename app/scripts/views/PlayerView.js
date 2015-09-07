@@ -8,22 +8,18 @@
   MA.View.ProgressBarView = Backbone.View.extend({
     tagName: 'div',
     tmpl: _.template($('#progress-tmpl').html()),
-    initialize: function(options) {
-      this.options = options || {};
+    initialize: function() {
+      this.render();
     },
     render: function() {
-      var percent = 100 * this.options.currentTime / this.options.totalTime;
+      var percent = 100 * this.model.get('currentTime') / this.model.get('duration');
       this.$el.html(
         this.tmpl({
-          value: percent,
-          time: {
-            minutes: parseInt(this.options.currentTime / 60,10),
-            seconds: this.options.currentTime % 60
-          }
+          value: percent
         })
       );
-      if(this.options.isPlaying && this.options.currentTime < this.options.totalTime) {
-        this.options.currentTime++;
+      if(this.model.get('isPlaying') && this.model.get('currentTime') < this.model.get('duration')) {
+        this.model.set({'currentTime': this.model.get('currentTime')+1 });
         setTimeout(function(){
             this.render();
         }.bind(this),1000);
@@ -34,7 +30,7 @@
 
   MA.View.PlayerView = Backbone.View.extend({
       el: '#player',
-      tmpl: _.template($('#player-status-tmpl').html()),
+      tmpl: _.template($('#player-tmpl').html()),
       events: {
         'click .prev': 'prevTrack',
         'click .play-pause': 'playPauseTrack',
@@ -42,36 +38,47 @@
       },
       initialize: function() {
         console.log('Started Player View');
-        this.$playerStatus = this.$el.find('#player-status');
+
+        this.currentSongModel = new MA.Model.Song({
+          'title': '-----',
+          'isPlaying': false,
+          'artist': '------',
+          'duration': 0
+        });
+
+        this.collection.on('change:isPlaying', function(model) {
+
+            this.currentSongModel = model;
+            this.render();
+
+        }.bind(this));
+
       },
       prevTrack: function(e) {
-        window.alert('Prev track');
         e.preventDefault();
+        var idx = (this.currentSongModel.id-1) % this.collection.length;
+        var nextSong = this.collection.get(idx);
+        this.collection.play(nextSong);
       },
       nextTrack: function(e) {
-        window.alert('Next track');
         e.preventDefault();
+        var idx = (this.currentSongModel.id+1) % this.collection.length;
+        var nextSong = this.collection.get(idx);
+        this.collection.play(nextSong);
       },
       playPauseTrack: function(e) {
-        window.alert('Play/Pause track');
         e.preventDefault();
+        this.currentSongModel.toggle();
       },
       render: function() {
-          var progressBarView = new MA.View.ProgressBarView({
-            'currentTime': 0,
-            'totalTime': 180,
-            'isPlaying': true
-          });
+          if(!this.currentSongModel.get('currentTime')) {
+            this.currentSongModel.set('currentTime',0);
+          }
+          this.progressBarView = new MA.View.ProgressBarView({ model: this.currentSongModel });
+          this.$el.html(this.tmpl(this.currentSongModel.toJSON()));
 
-          this.$playerStatus.html(this.tmpl({
-              'title': 'No Woman, No Cry',
-              'duration': {
-                minutes: parseInt(190 / 60,10),
-                seconds: 190 % 60
-              }
-          }));
           this.$el.find('#progress').html(
-            progressBarView.render().el
+            this.progressBarView.render().el
           );
       }
   });

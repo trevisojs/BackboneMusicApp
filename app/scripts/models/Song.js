@@ -11,6 +11,9 @@
       'album': '',
       'duration': '',
       'isPlaying': false
+    },
+    toggle: function() {
+      this.set({'isPlaying': !this.get('isPlaying')});
     }
   });
 

@@ -69,47 +69,49 @@
 
     <footer>
       <div id="player">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-12 col-sm-3">
-              <ul class="list-inline">
-                <li><a href="" title="Previous Track" class="prev"><i class="glyphicon glyphicon-step-backward"></i></a></li>
-                <li><a href="" title="Play" class="play-pause"><i class="glyphicon glyphicon-play"></i></a></li>
-                <li><a href="" title="Next Track" class="next"><i class="glyphicon glyphicon-step-forward"></i></a></li>
-              </ul>
 
-
-
-            </div>
-            <div class="col-xs-12 col-sm-9">
-              <div id="player-status">
-                <!-- Template #player-status-tmpl -->
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
 
     </footer>
 
-    <script type="text/template" id="player-status-tmpl">
-      <div class="row">
-        <div class="col-xs-8">
-          <h4><%= title %></h4>
+    <script type="text/template" id="player-tmpl">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3">
+            <ul class="list-inline">
+              <li><a href="" title="Previous Track" class="prev"><i class="glyphicon glyphicon-step-backward"></i></a></li>
+              <li>
+                <% if(isPlaying) { %>
+                  <a href="" title="Pause" class="play-pause"><i class="glyphicon glyphicon-pause"></i></a>
+                <% } else { %>
+                  <a href="" title="Play" class="play-pause"><i class="glyphicon glyphicon-play"></i></a>
+                <% } %>
+              </li>
+              <li><a href="" title="Next Track" class="next"><i class="glyphicon glyphicon-step-forward"></i></a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-9">
+            <div id="player-status">
+              <div class="row">
+                <div class="col-xs-8">
+                  <h4><%= title %></h4>
+                </div>
+                <div class="col-xs-4 text-right">
+                  <strong class="total-time"><%= duration %></strong>
+                </div>
+              </div>
+              <div class="row">
+                <div id="progress"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-xs-4 text-right">
-          <strong class="total-time"><%= duration.minutes %>:<%= duration.seconds %></strong>
-        </div>
-      </div>
-      <div class="row">
-        <div id="progress"></div>
       </div>
     </script>
     <script type="text/template" id="progress-tmpl">
       <a class="progress" href="#">
         <div class="progress-bar" role="progressbar" aria-valuenow="<%= value %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= value %>%;">
-          <%= time.minutes %>:<%= time.seconds %>
         </div>
       </a>
     </script>
@@ -126,7 +128,7 @@
               </thead>
               <tbody>
                 <% _.each(songs, function(song) { %>
-                  <tr data-id="<%= song.id %>" class="<% if(song.isPlaying) { %>active<% } %>">
+                  <tr data-id="<%= song.id %>" class="<% if(song.isPlaying) { %>playing<% } %>">
                     <td><%= song.id %></td>
                     <td><%= song.title %></td>
                   </tr>

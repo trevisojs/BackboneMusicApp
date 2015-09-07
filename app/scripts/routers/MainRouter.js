@@ -20,7 +20,7 @@
       this.songsCollection = new MA.Collection.Songs();
 
       this.navigatorView = new MA.View.NavigatorView();
-      this.playerView = new MA.View.PlayerView();
+      this.playerView = new MA.View.PlayerView({collection: this.songsCollection});
 
 
       this.playerView.render();
