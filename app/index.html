@@ -125,22 +125,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Asdmkasdm</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Asdmkasdm</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Asdmkasdm</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Asdmkasdm</td>
-                </tr>
+                <% _.each(songs, function(song) { %>
+                  <tr>
+                    <td><%= song.id %></td>
+                    <td><%= song.title %></td>
+                  </tr>
+                <% }); %>
               </tbody>
           </table>
         </div>
@@ -342,6 +332,8 @@
 
     <!-- build:js({app,.tmp}) scripts/main.js -->
     <script>var MusicApp = {};</script>
+    <script src="scripts/models/Song.js"></script>
+    <script src="scripts/collections/Songs.js"></script>
     <script src="scripts/views/NavigatorView.js"></script>
     <script src="scripts/views/PlayerView.js"></script>
     <script src="scripts/views/SongsView.js"></script>

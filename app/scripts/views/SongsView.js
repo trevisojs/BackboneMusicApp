@@ -9,11 +9,14 @@
       id: 'songs-view',
       tmpl: _.template($('#songs-view-tmpl').html()),
       initialize: function() {
-        this.render();
+        this.collection.on('reset', _.bind(this.render,this));
+        this.collection.fetch({reset: true});
       },
       render: function() {
         this.$el.html(
-          this.tmpl({})
+          this.tmpl({
+            songs: this.collection.toJSON()
+          })
         );
 
         return this;
