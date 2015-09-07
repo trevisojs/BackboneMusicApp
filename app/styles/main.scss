@@ -23,6 +23,12 @@ footer {
     margin-top:0;
   }
 }
+
+#songs-content {
+  .active {
+    background: #c7ffaf;
+  }
+}
 #player {
   ul {
     margin: 19px 0;

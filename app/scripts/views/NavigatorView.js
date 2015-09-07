@@ -2,7 +2,7 @@
   'use strict';
 
   //nested namespaces
-  MA.View = MusicApp.View || {};
+  MA.View = MA.View || {};
 
   MA.View.NavigatorView = Backbone.View.extend({
       el: '#navigator',

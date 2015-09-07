@@ -1,0 +1,23 @@
+[
+  {
+    "id": 0,
+    "title": "No Woman, No Cry",
+    "artist": "Bob Marley",
+    "album": "Nitty Dreads",
+    "duration": "196"
+  },
+  {
+    "id": 1,
+    "title": "Stan",
+    "artist": "Eminem",
+    "album": "The Marshal Matters LP",
+    "duration": "359"
+  },
+  {
+    "id": 2,
+    "title": "Bluvertigo",
+    "artist": "Cieli Neri",
+    "album": "Metallo Non Metallo",
+    "duration": "129"
+  }
+]
