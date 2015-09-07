@@ -8,7 +8,8 @@
     routes: {
       'songs': 'showSongs',
       'artists': 'showArtists',
-      'albums': 'showAlbums'
+      'albums': 'showAlbums',
+      '': 'defaultNavigation'
     },
     initialize: function() {
       console.log('Initilize router');
@@ -24,6 +25,9 @@
 
       this.playerView.render();
 
+    },
+    defaultNavigation: function() {
+      this.navigate('songs', {trigger: true});
     },
     showSongs: function() {
       console.log('Navigate songs');

@@ -126,7 +126,7 @@
               </thead>
               <tbody>
                 <% _.each(songs, function(song) { %>
-                  <tr>
+                  <tr data-id="<%= song.id %>" class="<% if(song.isPlaying) { %>active<% } %>">
                     <td><%= song.id %></td>
                     <td><%= song.title %></td>
                   </tr>
